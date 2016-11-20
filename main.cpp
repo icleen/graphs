@@ -9,10 +9,11 @@
 #include <set>
 #include <sstream>
 #include <fstream>
+#include "graphClass.h";
 
 using namespace std;
 
-int main () {
+int main (int argc, char *argv[]) {
 
 
 
