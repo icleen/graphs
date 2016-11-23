@@ -20,6 +20,10 @@ void graphClass::clearStack() {
 	}
 }
 
+void graphClass::addKey( string ky ) {
+	key = ky;
+}
+
 void graphClass::importFromFile( string fileName ) {
 	ifstream file;
 	file.open( fileName.c_str() );
@@ -133,7 +137,27 @@ string graphClass::DFSOutput( vector<string> dfs ) {
 	return output.str();
 }
 
+graphClass* graphClass::reverse() {
+	graphClass* ng = new graphClass();
+	ng->makeNodes( key.size() );
+	ng->addKey( key );
+	int a,b;
+	for (int i = 0; i < nodes.size(); i++) {
+		a = 0;
+		b = nodes.at(i)->id;
+		for (int j = 0; j < nodes.at(i)->edges.size(); j++) {
+			a = nodes.at(i)->edges.at(j)->id;
+			ng->makeEdge( a , b );
+		}
+	}
+	return ng;
+}
 
+
+string graphClass::SCC() {
+	graphClass* rvrse = reverse();
+	return DFSOutput( DFS( rvrse->POT() ) );
+}
 
 
 

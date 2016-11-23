@@ -41,6 +41,7 @@ public:
 	};
 
 	void importFromFile( string fileName );
+	void addKey( string ky );
 	void makeNodes( int amount );
 	void makeEdge( int nodeId, int toptr );
 	void clear();
@@ -57,7 +58,7 @@ public:
 	string pathOutput(  stack<int> stck );
 	string DFSOutput( vector<string> dfs );
 	graphClass* reverse();
-	void SCC();
+	string SCC();
 
 };
 
