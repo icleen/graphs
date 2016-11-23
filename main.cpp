@@ -24,10 +24,11 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < TESTS.size(); i++) {
 		graph = new graphClass();
 		graph->importFromFile( TESTS[i] );
-		cout << graph->POT() << endl;
+		cout << graph->pathOutput( graph->POT() )  << endl;
 		graph->resetVisit();
 		cout << graph->pathOutput( graph->traverse(0) ) << endl;
 		cout << graph->pathOutput( graph->traverse(6) ) << endl;
+		cout << graph->DFSOutput( graph->DFS( graph->POT() ) );
 		delete graph;
 		graph = NULL;
 	}

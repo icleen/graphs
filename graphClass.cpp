@@ -11,6 +11,13 @@ void graphClass::resetVisit() {
 	for (int i = 0; i < nodes.size(); i++) {
 		nodes.at(i)->visited = false;
 	}
+	clearStack();
+}
+
+void graphClass::clearStack() {
+	while ( !mystack.empty() ) {
+		mystack.pop();
+	}
 }
 
 void graphClass::importFromFile( string fileName ) {
@@ -60,11 +67,9 @@ void graphClass::makeEdge( int nodeId, int toptr ) {
 string graphClass::traverse( int id ) {
 	nodes.at(id)->visited = true;
 	stringstream value;
-	int returned = 0;
 	for (int i = 0; i < nodes.at(id)->edges.size(); i++) {
 		if ( !nodes.at(id)->edges.at(i)->visited ) {
 			value << traverse( nodes.at(id)->edges.at(i)->id );
-			returned++;
 		}
 	}
 	mystack.push( nodes.at(id)->id );
@@ -85,24 +90,42 @@ string graphClass::pathOutput( string path ) {
 	return output.str();
 }
 
-string graphClass::pathOutput() {
+string graphClass::pathOutput( stack<int> stck ) {
 	stringstream output;
-	while ( !mystack.empty() ) {
-		output << key.at( mystack.top() );
-		mystack.pop();
+	while ( !stck.empty() ) {
+		output << key.at( stck.top() );
+		stck.pop();
 	}
 	return output.str();
 }
 
-string graphClass::POT() {
+stack<int> graphClass::POT() {
 	for (int i = 0; i < nodes.size(); i++) {
 		if ( !nodes.at(i)->visited ) {
 			traverse( nodes.at(i)->id );
 		}
 	}
-	return pathOutput();
+	return mystack;
 }
 
+vector<string> graphClass::DFS( stack<int> stck ) {
+	vector<string> components;
+	resetVisit();
+	while ( !stck.empty() ) {
+		components.push_back( pathOutput( traverse( stck.top() ) ) );
+		stck.pop();
+	}
+	return components;
+}
+
+string graphClass::DFSOutput( vector<string> dfs ) {
+	stringstream output;
+	output << "These are the strongly connected components:\n";
+	for (int i = 0; i < dfs.size(); i++) {
+		output << dfs.at(i) << endl;
+	}
+	return output.str();
+}
 
 
 

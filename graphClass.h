@@ -45,15 +45,17 @@ public:
 	void makeEdge( int nodeId, int toptr );
 	void clear();
 	void resetVisit();
+	void clearStack();
 
 	int nodeIndex( string name );
 	gnode* nodeat(int index);
 
-	void DFS();
-	string POT();
+	vector<string> DFS( stack<int> stck );
+	stack<int> POT();
 	string traverse( int id );
 	string pathOutput( string path );
-	string pathOutput();
+	string pathOutput(  stack<int> stck );
+	string DFSOutput( vector<string> dfs );
 	graphClass* reverse();
 	void SCC();
 
