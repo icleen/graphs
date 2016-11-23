@@ -65,6 +65,9 @@ void graphClass::makeEdge( int nodeId, int toptr ) {
 }
 
 string graphClass::traverse( int id ) {
+	if ( nodes.at(id)->visited == true ) {
+		return "";
+	}
 	nodes.at(id)->visited = true;
 	stringstream value;
 	for (int i = 0; i < nodes.at(id)->edges.size(); i++) {
@@ -112,7 +115,10 @@ vector<string> graphClass::DFS( stack<int> stck ) {
 	vector<string> components;
 	resetVisit();
 	while ( !stck.empty() ) {
-		components.push_back( pathOutput( traverse( stck.top() ) ) );
+		string s = pathOutput( traverse( stck.top() ) );
+		if ( s != "" ) {
+			components.push_back( s );
+		}
 		stck.pop();
 	}
 	return components;
