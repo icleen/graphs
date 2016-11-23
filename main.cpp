@@ -15,19 +15,21 @@ using namespace std;
 
 const int TEST_NUM = 1;
 const vector<string> TESTS = {
-		"./tests/graph1.txt"
+		"./tests/graph1.txt", "./tests/graph2.txt"
 };
 
 int main (int argc, char *argv[]) {
 
-	graphClass* graph = new graphClass();
+	graphClass* graph;
 	for (int i = 0; i < TESTS.size(); i++) {
+		graph = new graphClass();
 		graph->importFromFile( TESTS[i] );
-//		cout << graph->POT() << endl;
-//		cout << graph->pathOutput() << endl;
+		cout << graph->POT() << endl;
+		graph->resetVisit();
 		cout << graph->pathOutput( graph->traverse(0) ) << endl;
 		cout << graph->pathOutput( graph->traverse(6) ) << endl;
-		graph->clear();
+		delete graph;
+		graph = NULL;
 	}
 
 	return 0;

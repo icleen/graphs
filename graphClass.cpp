@@ -4,6 +4,13 @@ void graphClass::clear() {
 	for (int i = 0; i < nodes.size(); i++) {
 		delete nodes.at(i);
 	}
+	nodes.clear();
+}
+
+void graphClass::resetVisit() {
+	for (int i = 0; i < nodes.size(); i++) {
+		nodes.at(i)->visited = false;
+	}
 }
 
 void graphClass::importFromFile( string fileName ) {
@@ -88,13 +95,12 @@ string graphClass::pathOutput() {
 }
 
 string graphClass::POT() {
-	stringstream output;
 	for (int i = 0; i < nodes.size(); i++) {
-		if ( !nodes.at(id)->visited ) {
-			output << traverse( nodes.at(id)->edges.at(i)->id );
+		if ( !nodes.at(i)->visited ) {
+			traverse( nodes.at(i)->id );
 		}
 	}
-	return output.str();
+	return pathOutput();
 }
 
 

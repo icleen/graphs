@@ -44,6 +44,7 @@ public:
 	void makeNodes( int amount );
 	void makeEdge( int nodeId, int toptr );
 	void clear();
+	void resetVisit();
 
 	int nodeIndex( string name );
 	gnode* nodeat(int index);
