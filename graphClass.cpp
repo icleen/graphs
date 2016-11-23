@@ -15,35 +15,36 @@ void graphClass::importFromFile( string fileName ) {
 	}
 	string inodes;
 	getline( file, inodes );
-	string iedge;
-	vector<string> iedges;
-	while( getline( file, iedge ) ) {
-		iedges.push_back(iedge);
-	}
 	makeNodes( inodes.size() );
-	int a, b = 0;
-	for (int i = 0; i < iedges.size(); i++) {
-		assert( iedges.at(i).size() == 3);
+	string iedge;
+	int a, b;
+	while( getline( file, iedge ) ) {
+		assert( iedge.size() == 2 );
+		a = 0;
+		b = 0;
 		for (int j = 0; j < inodes.size(); j++) {
-			if ( iedges.at(i).at(0) == inodes.at(j) ) {
+			if ( iedge.at(0) == inodes.at(j) ) {
 				a = j;
 			}
-			if ( iedges.at(i).at(2) == inodes.at(j) ) {
+			if ( iedge.at(1) == inodes.at(j) ) {
 				b = j;
 			}
 		}
 		makeEdge( a, b );
 	}
+	cout << id << endl;
+	file.close();
 }
 
 void graphClass::makeNodes( int amount ) {
 	for (int i = 0; i < amount; i++) {
-		gnode* gn = new gnode( id );
-		gn->id = id++;
+		gnode* gn = new gnode( id++ );
+		nodes.push_back(gn);
 	}
 }
 
 void graphClass::makeEdge( int nodeId, int toptr ) {
+	assert( toptr < nodes.size() );
 	gnode* gn = nodes.at(toptr);
 	nodes.at(nodeId)->edges.push_back(gn);
 }

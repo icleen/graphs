@@ -1,0 +1,16 @@
+abcdefg
+ab
+ac
+ad
+df
+dg
+dc
+fg
+ga
+ge
+ed
+be
+ba
+eb
+ee
+bc

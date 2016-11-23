@@ -9,19 +9,19 @@
 #include <set>
 #include <sstream>
 #include <fstream>
-#include "graphClass.h";
+#include "graphClass.h"
 
 using namespace std;
 
 const int TEST_NUM = 1;
-const int TESTS[] = {
-		"graph1.txt"
+const vector<string> TESTS = {
+		"./tests/graph1.txt"
 };
 
 int main (int argc, char *argv[]) {
 
 	graphClass* graph = new graphClass();
-	for (int i = 0; i < TEST_NUM; i++) {
+	for (int i = 0; i < TESTS.size(); i++) {
 		graph->importFromFile( TESTS[i] );
 		graph->clear();
 	}
