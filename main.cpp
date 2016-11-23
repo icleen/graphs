@@ -23,6 +23,10 @@ int main (int argc, char *argv[]) {
 	graphClass* graph = new graphClass();
 	for (int i = 0; i < TESTS.size(); i++) {
 		graph->importFromFile( TESTS[i] );
+//		cout << graph->POT() << endl;
+//		cout << graph->pathOutput() << endl;
+		cout << graph->pathOutput( graph->traverse(0) ) << endl;
+		cout << graph->pathOutput( graph->traverse(6) ) << endl;
 		graph->clear();
 	}
 

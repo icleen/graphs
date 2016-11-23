@@ -15,6 +15,7 @@ void graphClass::importFromFile( string fileName ) {
 	}
 	string inodes;
 	getline( file, inodes );
+	key = inodes;
 	makeNodes( inodes.size() );
 	string iedge;
 	int a, b;
@@ -32,7 +33,7 @@ void graphClass::importFromFile( string fileName ) {
 		}
 		makeEdge( a, b );
 	}
-	cout << id << endl;
+//	cout << id << endl;
 	file.close();
 }
 
@@ -48,4 +49,62 @@ void graphClass::makeEdge( int nodeId, int toptr ) {
 	gnode* gn = nodes.at(toptr);
 	nodes.at(nodeId)->edges.push_back(gn);
 }
+
+string graphClass::traverse( int id ) {
+	nodes.at(id)->visited = true;
+	stringstream value;
+	int returned = 0;
+	for (int i = 0; i < nodes.at(id)->edges.size(); i++) {
+		if ( !nodes.at(id)->edges.at(i)->visited ) {
+			value << traverse( nodes.at(id)->edges.at(i)->id );
+			returned++;
+		}
+	}
+	mystack.push( nodes.at(id)->id );
+	value << nodes.at(id)->id;
+	return value.str();
+}
+
+string graphClass::pathOutput( string path ) {
+	stringstream output;
+	stringstream ss;
+	int index = -1;
+	for (int i = path.size() - 1; i >= 0; i--) {
+		ss.clear();
+		ss << path.at(i);
+		ss >> index;
+		output << key.at( index );
+	}
+	return output.str();
+}
+
+string graphClass::pathOutput() {
+	stringstream output;
+	while ( !mystack.empty() ) {
+		output << key.at( mystack.top() );
+		mystack.pop();
+	}
+	return output.str();
+}
+
+string graphClass::POT() {
+	stringstream output;
+	for (int i = 0; i < nodes.size(); i++) {
+		if ( !nodes.at(id)->visited ) {
+			output << traverse( nodes.at(id)->edges.at(i)->id );
+		}
+	}
+	return output.str();
+}
+
+
+
+
+
+
+
+
+
+
+
 

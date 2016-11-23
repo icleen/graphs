@@ -6,16 +6,22 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <sstream>
+#include <stack>
 #include <assert.h>
 
 using namespace std;
 
 struct gnode {
-	int id;
-	vector<gnode*> edges;
 	gnode( int i ) {
 		id = i;
+		parent = -1;
+		visited = false;
 	}
+	int id;
+	vector<gnode*> edges;
+	bool visited;
+	int parent;
 };
 
 class graphClass {
@@ -23,6 +29,9 @@ class graphClass {
 private:
 	int id;
 	vector<gnode*> nodes;
+	string key;
+	stack<int> mystack;
+
 public:
 	graphClass() {
 		id = 0;
@@ -40,7 +49,10 @@ public:
 	gnode* nodeat(int index);
 
 	void DFS();
-	void POT();
+	string POT();
+	string traverse( int id );
+	string pathOutput( string path );
+	string pathOutput();
 	graphClass* reverse();
 	void SCC();
 
