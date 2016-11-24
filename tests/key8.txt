@@ -1,0 +1,5 @@
+Strongly connected components:
+f
+a
+b
+cde

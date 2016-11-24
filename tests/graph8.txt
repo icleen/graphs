@@ -1,0 +1,9 @@
+abcdef
+af
+ef
+eb
+ec
+ba
+cb
+cd
+de

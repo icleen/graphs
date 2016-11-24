@@ -1,0 +1,4 @@
+Strongly connected components:
+c
+eba
+d
