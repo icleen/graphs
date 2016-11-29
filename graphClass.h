@@ -47,6 +47,15 @@ public:
 	void clear();
 	void resetVisit();
 	void clearStack();
+	int size() {
+		return nodes.size();
+	};
+	int size( int index ) {
+			return nodes.at(index)->edges.size();
+	};
+	stack<int> stackOut() {
+		return mystack;
+	};
 
 	int nodeIndex( string name );
 	gnode* nodeat(int index);

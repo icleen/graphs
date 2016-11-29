@@ -107,8 +107,11 @@ string graphClass::pathOutput( stack<int> stck ) {
 }
 
 stack<int> graphClass::POT() {
+//	resetVisit();
+//	clearStack();
 	for (int i = 0; i < nodes.size(); i++) {
 		if ( !nodes.at(i)->visited ) {
+//			cout << i + 1 << " times\n";
 			traverse( nodes.at(i)->id );
 		}
 	}
@@ -117,12 +120,14 @@ stack<int> graphClass::POT() {
 
 vector<string> graphClass::DFS( stack<int> stck ) {
 	vector<string> components;
-	resetVisit();
+//	resetVisit();
 	while ( !stck.empty() ) {
-		string s = pathOutput( traverse( stck.top() ) );
+		traverse( stck.top() );
+		string s = pathOutput( mystack );
 		if ( s != "" ) {
 			components.push_back( s );
 		}
+		clearStack();
 		stck.pop();
 	}
 	return components;
@@ -130,6 +135,7 @@ vector<string> graphClass::DFS( stack<int> stck ) {
 
 string graphClass::DFSOutput( vector<string> dfs ) {
 	stringstream output;
+//	resetVisit();
 	output << "These are the strongly connected components:\n";
 	for (int i = 0; i < dfs.size(); i++) {
 		output << dfs.at(i) << endl;
