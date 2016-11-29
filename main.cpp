@@ -16,7 +16,8 @@ using namespace std;
 const int TEST_NUM = 1;
 const vector<string> TESTS = {
 		"./tests/graph1.txt", "./tests/graph2.txt", "./tests/graph3.txt", "./tests/graph4.txt", "./tests/graph5.txt", "./tests/graph6.txt",
-		"./tests/graph7.txt", "./tests/graph8.txt", "./tests/graph9.txt", "./tests/graph10.txt", "./tests/graph11.txt", "./tests/graph12.txt"
+		"./tests/graph7.txt", "./tests/graph8.txt", "./tests/graph9.txt", "./tests/graph10.txt", "./tests/graph11.txt", "./tests/graph12.txt",
+		"./tests/graph13.txt"
 };
 
 int main (int argc, char *argv[]) {
